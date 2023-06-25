@@ -1,7 +1,21 @@
 server:
   port: 8080
-  spring:
-    main:
-      web-application-type: servlet
   error:
     include-message: always
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5332/customer
+    username: levantos
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show_sql: false
+  main:
+    web-application-type:
+

@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 /**
  * @author Levantosina
  */
-@ResponseStatus(code = HttpStatus.NOT_FOUND)
-public class ResourceNotFound extends RuntimeException{
-    public ResourceNotFound(String message) {
+@ResponseStatus(code = HttpStatus.BAD_REQUEST)
+public class RequestValidationException extends RuntimeException {
+    public RequestValidationException(String message) {
         super(message);
     }
 }

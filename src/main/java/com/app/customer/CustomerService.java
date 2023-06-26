@@ -1,8 +1,8 @@
 package com.app.customer;
 
-import com.app.exceprion.DuplicateResourceException;
-import com.app.exceprion.RequestValidationException;
-import com.app.exceprion.ResourceNotFoundException;
+import com.app.exception.DuplicateResourceException;
+import com.app.exception.RequestValidationException;
+import com.app.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 

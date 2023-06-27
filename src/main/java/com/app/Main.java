@@ -29,7 +29,7 @@ public class Main {
              );
 
              List<Customer>customers=List.of(lev,Kek);
-             customerRepository.saveAll(customers);
+           //  customerRepository.saveAll(customers);
 
          };
     }

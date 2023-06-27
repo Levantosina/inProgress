@@ -9,13 +9,13 @@ spring:
     password: password
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: none
 
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
-    show_sql: false
+    show_sql: true
   main:
-    web-application-type:
+    web-application-type: servlet
 

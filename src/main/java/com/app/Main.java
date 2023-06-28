@@ -2,13 +2,17 @@ package com.app;
 
 import com.app.customer.Customer;
 import com.app.customer.CustomerRepository;
+import com.github.javafaker.Faker;
+
+import com.github.javafaker.Name;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
+
 import org.springframework.context.annotation.Bean;
 
 import java.util.List;
+import java.util.Random;
 
 
 /**
@@ -24,12 +28,17 @@ public class Main {
     @Bean
     CommandLineRunner runner(CustomerRepository customerRepository){
          return args -> {
-             Customer lev=  new Customer("Lev","lev@mail.com",33);
-             Customer Kek=  new Customer("Kek","Kek@mail.com",3
-             );
 
-             List<Customer>customers=List.of(lev,Kek);
-           //  customerRepository.saveAll(customers);
+            var faker= new Faker();
+             Random random =new Random();
+             Name name = faker.name();
+             String firstName = name.firstName();
+                String lastName = name.lastName();
+            Customer customer=  new Customer(
+                   firstName+" "+lastName,
+                   name.firstName().toLowerCase()+"."+name.lastName().toLowerCase()+"@gmail.com",
+                    random.nextInt(16,100));
+                    customerRepository.save(customer);
 
          };
     }

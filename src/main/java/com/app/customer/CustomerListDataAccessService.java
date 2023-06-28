@@ -15,14 +15,14 @@ public class CustomerListDataAccessService implements CustomerDao{
 
     private static List<Customer> customers;
 
-    static {
-        customers=new ArrayList<>();
-        Customer lev=  new Customer(1,"Lev","lev@mail.com",33);
-        customers.add(lev);
-        Customer Kek=  new Customer(2,"Kek","Kek@mail.com",3);
-        customers.add(Kek);
-
-    }
+//    static {
+//        customers=new ArrayList<>();
+//        Customer lev=  new Customer(1L,"Lev","lev@mail.com",33);
+//        customers.add(lev);
+//        Customer Kek=  new Customer(2L,"Kek","Kek@mail.com",3);
+//        customers.add(Kek);
+//
+//    }
 
     @Override
     public List<Customer> selectAllCustomers() {

@@ -296,15 +296,7 @@ class CustomerServiceTest {
                .isInstanceOf(RequestValidationException.class)
                .hasMessageContaining("No changes detected");
 
-
-
-
-
-        verify(customerDao,never()).updateCustomer(any());
-
+       verify(customerDao,never()).updateCustomer(any());
 
     }
-
-
-
 }

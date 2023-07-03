@@ -102,7 +102,5 @@ class CustomerJPADataAccessServiceTest {
 
         verify(customerRepository)
                 .save(customer);
-
-
     }
 }

@@ -41,4 +41,5 @@ public class CustomerController {
     public void updateCustomer(@PathVariable("customerId")Integer customerId,@RequestBody CustomerUpdateRequest customerupdateRequest){
         customerService.updateCustomer(customerId, customerupdateRequest);
     }
+
 }

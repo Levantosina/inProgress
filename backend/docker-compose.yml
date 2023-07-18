@@ -14,7 +14,7 @@ services:
     networks:
       - db
     restart: unless-stopped
-test
+
 
   levantos-api:
     container_name: levantos-api

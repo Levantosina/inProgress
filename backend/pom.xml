@@ -13,13 +13,12 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>demoApiApp</name>
 	<description>Demo project for Spring Boot</description>
-	<organization>
-		<name>levantos</name>
-		<url>https://www.levantos.com</url>
-	</organization>
+
 	<properties>
 		<java.version>17</java.version>
 		<docker.username>levantosina</docker.username>
+		<docker.image.name>levantos-api</docker.image.name>
+		<docker.image.tag/>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -180,7 +179,7 @@
 					</platforms>
 				</from>
 					<to>
-					<image>docker.io/levantosina/${project.artifactId}:${project.version}</image>
+					<image>docker.io/${docker.username}/${docker.image.name}:${docker.image.tag}</image>
 						<tags>
 						<tag>latest</tag>
 						</tags>

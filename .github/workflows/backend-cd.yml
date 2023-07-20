@@ -50,6 +50,25 @@ jobs:
         run:
           echo "Dockerrun.aws.json before updating tag"
           cat Dockerrun.aws.json
+          sed -i -E 's_(levantosina/levantos-api:)([^"]*)_\1'${{steps.build-number.outputs.BUILD_NUMBER}}'_' Dockerrun.aws.json
           echo "Dockerrun.aws.json after updating tag"
-          sed -i -E 's_(levantosina/levantos-api:)([^"]*)_\1'${BUILD_NUMBER}'_' Dockerrun.aws.json
           cat Dockerrun.aws.json
+
+      - name: Deploy to Elastic Beanstalk
+        uses: einaregilsson/beanstalk-deploy@v21
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: ${{ secrets.EB_APPLICATION_NAME }}
+          environment_name:  ${{ secrets.EB_ENVIRONMENT_NAME }}
+          version_label: ${{ steps.build-number.outputs.BUILD_NUMBER }}
+          version_description: ${{ github.sha }}
+          region:  ${{ secrets.EB_REGION }}
+          deployment_package: backend/Dockerrun.aws.json
+      - name: Commit and push Dockerrun.aws.json
+        run:
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "Update Dockerrun.aws.json with new build number ${{ steps.build-number.outputs.BUILD_NUMBER }}"
+          git push

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class testController {
     record test(String name){}
 
-    @GetMapping("/testTest3")
+    @GetMapping("/testTest4")
     public test testController() {
         return  new test("testController");
     }

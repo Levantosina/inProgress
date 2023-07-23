@@ -16,7 +16,6 @@
         {
           "name": "SPRING_DATASOURCE_URL",
           "value": "jdbc:postgresql://awseb-e-24tuvmgdqp-stack-awsebrdsdatabase-thgxvpwbpx2f.cevu99raedur.eu-north-1.rds.amazonaws.com:5432/customer"
-
             }
           ]
     }

@@ -61,10 +61,9 @@ jobs:
           application_name: ${{ secrets.EB_APPLICATION_NAME }}
           environment_name:  ${{ secrets.EB_ENVIRONMENT_NAME }}
           version_label: ${{ steps.build-number.outputs.BUILD_NUMBER }}
-          version_description: ${{ github.SHA }}
+          version_description: ${{ github.sha }}
           region: ${{ secrets.EB_REGION }}
           deployment_package: backend/Dockerrun.aws.json
-
       - name: Commit and push Dockerrun.aws.json
         run: |
           git config user.name github-actions

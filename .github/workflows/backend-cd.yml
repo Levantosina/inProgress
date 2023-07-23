@@ -46,7 +46,7 @@ jobs:
       - name: Build Package Push with Maven
         run: mvn -ntp -B verify -Ddocker.image.tag=${{steps.build-number.outputs.BUILD_NUMBER}} jib:build
       - name: Update Dockerrun.aws.json api image with new build number
-        run:
+        run: |
           echo "Dockerrun.aws.json before updating tag"
           cat Dockerrun.aws.json
           sed -i -E 's_(levantosina/levantos-api:)([^"]*)_\1'${{steps.build-number.outputs.BUILD_NUMBER}}'_' Dockerrun.aws.json

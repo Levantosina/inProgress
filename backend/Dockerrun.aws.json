@@ -3,7 +3,7 @@
   "containerDefinitions": [
     {
       "name": "levantos-api",
-      "image": "levantosina/levantos-api:latest",
+      "image": "levantosina/levantos-api:",
       "essential": true,
       "memory": 512,
       "portMappings": [

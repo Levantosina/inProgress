@@ -3,7 +3,7 @@
   "containerDefinitions": [
     {
       "name": "levantos-api",
-      "image": "levantosina/levantos-api:24.07.2023.14.14.22",
+      "image": "levantosina/levantos-api:24.07.2023.14.26.04",
       "essential": true,
       "memory": 512,
       "portMappings": [

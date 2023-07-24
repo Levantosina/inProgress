@@ -31,9 +31,9 @@ jobs:
     steps:
       - name: Send Slack Message
         run: >
-            curl -X POST -H 'Content-type: application/json' 
-            --data '{"text":"Deployment started :bird_run:"}' 
-            ${{ secrets.SLACK_WEBHOOK_URL }}
+          curl -X POST -H 'Content-type: application/json' 
+          --data '{"text":"Deployment started :bird_run:"}' 
+          ${{ secrets.SLACK_WEBHOOK_URL }}
       - uses: actions/checkout@v3
       - uses: actions/setup-java@v3
         with:

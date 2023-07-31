@@ -1,22 +1,55 @@
-import {Button} from '@chakra-ui/react';
-import SidebarWithHeader from "./shared/SideBar.jsx";
-import {useEffect} from "react";
+import React from 'react';
+import {Button,Spinner,Text} from '@chakra-ui/react';
+import SidebarWithHeader from "./components/shared/SideBar.jsx";
+import {useEffect,useState} from "react";
 import {getCustomers} from "./services/client.js";
 
 const App = () => {
 
-    useEffect(() => {
-        getCustomers().then(res => {
-        console.log(res)
-    }).catch(err => {
-        console.log(err)
-    })
-    }, [])
+    const [customers, setCustomers] = useState([]);
+   const[loading,setLoading] = useState(false);
 
+    useEffect(() => {
+        setLoading(true);
+        getCustomers().then(res => {
+            setCustomers(res.data);
+        }).catch(err => {
+        console.log(err)
+    }).finally(() => {
+            setLoading(false)
+        })
+        }, [])
+
+
+    if(loading){
+        return (
+            <SidebarWithHeader>
+            <Spinner
+                thickness='4px'
+                speed='0.65s'
+                emptyColor='gray.200'
+                color='blue.500'
+                size='xl'
+            />
+            </SidebarWithHeader>
+        )
+    }
+
+    if(customers.length <= 0){
+        return (
+            <SidebarWithHeader>
+               <Text> No customers available </Text>
+            </SidebarWithHeader>
+        )
+    }
     return (
         <SidebarWithHeader>
-            <Button  colorScheme='teal' variant='outline'>Button</Button>
+            {customers.map((customer,index) => (
+                <p key={index}>{customer.name}</p>
+            ))}
         </SidebarWithHeader>
     )
+
+
 }
 export default App;

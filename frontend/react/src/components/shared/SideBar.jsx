@@ -1,5 +1,5 @@
 'use client'
-
+import React from 'react'
 import {
     IconButton,
     Avatar,
@@ -19,7 +19,6 @@ import {
     MenuDivider,
     MenuItem,
     MenuList,
-    Image
 } from '@chakra-ui/react'
 import {
     FiHome,
@@ -31,15 +30,6 @@ import {
     FiBell,
     FiChevronDown,
 } from 'react-icons/fi'
-
-
-
-
-
-
-
-
-
 
 const LinkItems = [
     { name: 'Home', icon: FiHome },
@@ -60,16 +50,10 @@ const SidebarContent = ({ onClose, ...rest }) => {
             pos="fixed"
             h="full"
             {...rest}>
-            <Flex h="20" flexDirection="column" alignItems="center" mx="8" mb={65} mt={6} justifyContent="space-between">
-                <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold" mb={5}>
-                    Dashboard
+            <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
+                <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
+                    Logo
                 </Text>
-                <Image
-                    borderRadius='full'
-                    boxSize='80px'
-                    src='https://bit.ly/dan-abramov'
-                    alt='Levantos'
-                />
                 <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
             </Flex>
             {LinkItems.map((link) => (
@@ -186,8 +170,8 @@ const MobileNav = ({ onOpen, ...rest }) => {
         </Flex>
     )
 }
-
-const SidebarWithHeader = () => {
+//export default function SidebarWithHeader() {
+const SidebarWithHeader = ({children}) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     return (
@@ -207,7 +191,7 @@ const SidebarWithHeader = () => {
             {/* mobilenav */}
             <MobileNav onOpen={onOpen} />
             <Box ml={{ base: 0, md: 60 }} p="4">
-                {/* Content */}
+                {children}
             </Box>
         </Box>
     )

@@ -17,13 +17,13 @@ public class WebMvcConfig implements WebMvcConfigurer {
     private List<String> allowedOrigins;
     @Value("#{'${cors.allowed-methods}'.split(',')}")
     private List<String> allowedMethods;
+
+
     @Override
-
-
     public void addCorsMappings(CorsRegistry registry) {
         CorsRegistration corsRegistration=registry.addMapping("/api/**");
         allowedOrigins.forEach(corsRegistration::allowedMethods);
-        allowedMethods.forEach(corsRegistration::allowedMethods);
+        allowedMethods.forEach(corsRegistration::allowedOrigins);
 
     }
 }

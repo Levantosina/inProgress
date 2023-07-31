@@ -33,8 +33,8 @@ public class Main {
              Random random =new Random();
              Name name = faker.name();
              String firstName = name.firstName();
-                String lastName = name.lastName();
-            Customer customer=  new Customer(
+             String lastName = name.lastName();
+             Customer customer=  new Customer(
                    firstName+" "+lastName,
                    name.firstName().toLowerCase()+"."+name.lastName().toLowerCase()+"@gmail.com",
                     random.nextInt(16,100));

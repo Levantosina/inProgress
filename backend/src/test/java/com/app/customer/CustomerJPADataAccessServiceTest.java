@@ -1,17 +1,12 @@
 package com.app.customer;
 
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 
-import java.util.UUID;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 
 /**
@@ -55,7 +50,7 @@ class CustomerJPADataAccessServiceTest {
     @Test
     void insertCustomer() {
 
-        Customer customer=new Customer("Lev","Antosina@gmail.com",2);
+        Customer customer=new Customer("Lev","Antosina@gmail.com",2, Gender.MALE);
 
        underTest.insertCustomer(customer);
 
@@ -96,7 +91,7 @@ class CustomerJPADataAccessServiceTest {
 
     @Test
     void updateCustomer() {
-        Customer customer=new Customer(1L,"Peck","peck.@gmail",3);
+        Customer customer=new Customer(1L,"Peck","peck.@gmail",3, Gender.MALE);
 
         underTest.updateCustomer(customer);
 

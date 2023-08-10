@@ -2,6 +2,7 @@ package com.app;
 
 import com.app.customer.Customer;
 import com.app.customer.CustomerRepository;
+import com.app.customer.Gender;
 import com.github.javafaker.Faker;
 
 import com.github.javafaker.Name;
@@ -11,7 +12,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import org.springframework.context.annotation.Bean;
 
-import java.util.List;
 import java.util.Random;
 
 
@@ -33,10 +33,13 @@ public class Main {
              Name name = faker.name();
              String firstName = name.firstName();
              String lastName = name.lastName();
+             int age=random.nextInt(16,100);
+             Gender gender = age % 2 == 0 ? Gender.MALE : Gender.FEMALE;
              Customer customer=  new Customer(
                    firstName+" "+lastName,
                    firstName.toLowerCase()+"."+lastName.toLowerCase()+"@gmail.com",
-                    random.nextInt(16,100));
+                   age,
+                     gender);
                     customerRepository.save(customer);
 
          };

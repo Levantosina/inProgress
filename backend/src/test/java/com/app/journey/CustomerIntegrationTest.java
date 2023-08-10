@@ -1,9 +1,6 @@
 package com.app.journey;
 
-import com.app.customer.Customer;
-import com.app.customer.CustomerRegistrationRequest;
-import com.app.customer.CustomerRepository;
-import com.app.customer.CustomerUpdateRequest;
+import com.app.customer.*;
 import com.github.javafaker.Faker;
 import com.github.javafaker.Name;
 import org.junit.jupiter.api.Test;
@@ -45,10 +42,14 @@ public class CustomerIntegrationTest {
         String email = faker.name().lastName() + "-" + UUID.randomUUID() + "@gmail.com";
         int age = RANDOM.nextInt(1, 100);
 
+        Gender gender = age % 2 == 0 ? Gender.MALE : Gender.FEMALE;
+
+
         CustomerRegistrationRequest customerRegistrationRequest = new CustomerRegistrationRequest(
                 name,
                 email,
-                age
+                age,
+                gender
         );
         //send request to endpoint
         webTestClient.post()
@@ -75,8 +76,8 @@ public class CustomerIntegrationTest {
         Customer expectedCustomer = new Customer(
                 name,
                 email,
-                age
-        );
+                age,
+                gender);
 
         assertThat(allCustomers)
                 .usingRecursiveFieldByFieldElementComparatorIgnoringFields("id")
@@ -111,11 +112,12 @@ public class CustomerIntegrationTest {
         String name = fakerName.fullName();
         String email = faker.name().lastName() + "-" + UUID.randomUUID() + "@gmail.com";
         int age = RANDOM.nextInt(1, 100);
-
+        Gender gender = age % 2 == 0 ? Gender.MALE : Gender.FEMALE;
         CustomerRegistrationRequest customerRegistrationRequest = new CustomerRegistrationRequest(
                 name,
                 email,
-                age
+                age,
+                gender
         );
         //send request to endpoint
         webTestClient.post()
@@ -174,11 +176,12 @@ public class CustomerIntegrationTest {
         String name = fakerName.fullName();
         String email = faker.name().lastName() + "-" + UUID.randomUUID() + "@gmail.com";
         int age = RANDOM.nextInt(1, 100);
-
+        Gender gender = age % 2 == 0 ? Gender.MALE : Gender.FEMALE;
         CustomerRegistrationRequest customerRegistrationRequest = new CustomerRegistrationRequest(
                 name,
                 email,
-                age
+                age,
+                gender
         );
         //send request to endpoint
         webTestClient.post()
@@ -243,8 +246,8 @@ public class CustomerIntegrationTest {
                 id,
                 newName,
                 email,
-                age
-        );
+                age,
+                gender);
 
         assertThat(updatedCustomer).isEqualTo(expected);
     }

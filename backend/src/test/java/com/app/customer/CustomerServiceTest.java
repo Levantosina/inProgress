@@ -9,8 +9,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
@@ -50,7 +48,7 @@ class CustomerServiceTest {
     @Test
     void canGetCustomer() {
         long id=1;
-        Customer customer=new Customer(id,"Lev","lev@gmail.com",24);
+        Customer customer=new Customer(id,"Lev","lev@gmail.com",24, Gender.MALE);
 
         when(customerDao.selectCustomerById((int)id)).thenReturn(Optional.of(customer));
 
@@ -80,7 +78,8 @@ class CustomerServiceTest {
        CustomerRegistrationRequest request=new CustomerRegistrationRequest(
                "Puk",
                email,
-               24);
+               24,
+               Gender.MALE);
         underTest.addCustomer(request);
 
         ArgumentCaptor <Customer>customerArgumentCaptor=ArgumentCaptor.forClass(Customer.class);
@@ -103,7 +102,8 @@ class CustomerServiceTest {
         CustomerRegistrationRequest request=new CustomerRegistrationRequest(
                 "Puk",
                 email,
-                24);
+                24,
+                Gender.MALE);
 
         assertThatThrownBy(()->underTest.addCustomer(request))
                 .isInstanceOf(DuplicateResourceException.class)
@@ -150,7 +150,7 @@ class CustomerServiceTest {
     void canUpdateAllCustomersProperties() {
 
         long id=1;
-        Customer customer=new Customer(id,"Lev","lev@gmail.com",24);
+        Customer customer=new Customer(id,"Lev","lev@gmail.com",24, Gender.MALE);
 
 
         when(customerDao.selectCustomerById((int)id)).thenReturn(Optional.of(customer));
@@ -177,7 +177,7 @@ class CustomerServiceTest {
     void canUpdateOnlyCustomerName() {
 
         long id=1;
-        Customer customer=new Customer(id,"Lev","lev@gmail.com",24);
+        Customer customer=new Customer(id,"Lev","lev@gmail.com",24, Gender.MALE);
 
 
         when(customerDao.selectCustomerById((int)id)).thenReturn(Optional.of(customer));
@@ -204,7 +204,7 @@ class CustomerServiceTest {
     void canUpdateOnlyCustomerEmail() {
 
         long id=1;
-        Customer customer=new Customer(id,"Lev","lev@gmail.com",24);
+        Customer customer=new Customer(id,"Lev","lev@gmail.com",24, Gender.MALE);
 
 
         when(customerDao.selectCustomerById((int)id)).thenReturn(Optional.of(customer));
@@ -232,7 +232,7 @@ class CustomerServiceTest {
     void canUpdateOnlyCustomerAge() {
 
         long id=1;
-        Customer customer=new Customer(id,"Lev","lev@gmail.com",24);
+        Customer customer=new Customer(id,"Lev","lev@gmail.com",24, Gender.MALE);
 
 
         when(customerDao.selectCustomerById((int)id)).thenReturn(Optional.of(customer));
@@ -260,7 +260,7 @@ class CustomerServiceTest {
     void willThrowWhenTryingToUpdateCustomerEmailWhenAlreadyTaken() {
 
         long id=1;
-        Customer customer=new Customer(id,"Lev","lev@gmail.com",24);
+        Customer customer=new Customer(id,"Lev","lev@gmail.com",24, Gender.MALE);
 
 
         when(customerDao.selectCustomerById((int)id)).thenReturn(Optional.of(customer));
@@ -285,7 +285,7 @@ class CustomerServiceTest {
     void willThrowWhenCustomerUpdateHasNoChanges() {
 
         long id=1;
-        Customer customer=new Customer(id,"Lev","lev@gmail.com",24);
+        Customer customer=new Customer(id,"Lev","lev@gmail.com",24, Gender.MALE);
 
 
         when(customerDao.selectCustomerById((int)id)).thenReturn(Optional.of(customer));

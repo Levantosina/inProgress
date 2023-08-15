@@ -183,7 +183,6 @@ public class CustomerIntegrationTest {
                 age,
                 gender
         );
-        //send request to endpoint
         webTestClient.post()
                 .uri(CUSTOMER_URI)
                 .accept(MediaType.APPLICATION_JSON)
@@ -205,8 +204,6 @@ public class CustomerIntegrationTest {
                 .getResponseBody();
 
 
-        //make sure that customer is in the list
-        //get customer by id
 
         long id = allCustomers.stream()
                 .filter(customer -> customer.getEmail().equals(email))
@@ -214,7 +211,6 @@ public class CustomerIntegrationTest {
                 .findFirst()
                 .orElseThrow();
 
-//update customer
 
 
         String newName="newName";

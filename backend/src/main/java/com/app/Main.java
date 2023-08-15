@@ -30,11 +30,17 @@ public class Main {
          return args -> {
              var faker= new Faker();
              Random random =new Random();
+
              Name name = faker.name();
+
              String firstName = name.firstName();
+
              String lastName = name.lastName();
+
              int age=random.nextInt(16,100);
+
              Gender gender = age % 2 == 0 ? Gender.MALE : Gender.FEMALE;
+
              Customer customer=  new Customer(
                    firstName+" "+lastName,
                    firstName.toLowerCase()+"."+lastName.toLowerCase()+"@gmail.com",

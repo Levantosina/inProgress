@@ -38,8 +38,7 @@ public class Main {
              Customer customer=  new Customer(
                    firstName+" "+lastName,
                    firstName.toLowerCase()+"."+lastName.toLowerCase()+"@gmail.com",
-                   age,
-                     gender);
+                   age, gender);
                     customerRepository.save(customer);
 
          };

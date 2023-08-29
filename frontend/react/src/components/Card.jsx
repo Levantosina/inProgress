@@ -11,18 +11,34 @@ import {
     Stack,
     Tag,
     useColorModeValue,
+    Button,
+    useDisclosure,
+    AlertDialogOverlay,
+    AlertDialog,
+    AlertDialogContent,
+    AlertDialogBody,
+    AlertDialogFooter, AlertDialogHeader, WrapItem, Wrap
 } from '@chakra-ui/react'
 
-// eslint-disable-next-line react/prop-types
-export default function CardWithImage({ id, name, email, age, gender, imageNumber}) {
+import {useRef} from 'react'
+import {deleteCustomer} from "../services/client.js";
+import {errorNotification, successNotification} from "../services/notification.js";
+import UpdateCustomerDrawer from "./UpdateCustomerDrawer.jsx";
+
+export default function CardWithImage({ id, name, email, age, gender, imageNumber,fetchCustomers}) {
     const randomUserGender = gender ==="MALE"? "men":"women";
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const cancelRef =useRef()
     return (
         <Center py={6}>
             <Box
                 maxW={'300px'}
+                minW={'300px'}
                 w={'full'}
+                m={2}
+                p={4}
                 bg={useColorModeValue('white', 'gray.800')}
-                boxShadow={'2xl'}
+                boxShadow={'lg'}
                 rounded={'md'}
                 overflow={'hidden'}>
                 <Image
@@ -47,15 +63,88 @@ export default function CardWithImage({ id, name, email, age, gender, imageNumbe
                 </Flex>
 
                 <Box p={6}>
-                    <Stack spacing={2} align={'center'} mb={5}>
+                    <Stack spacing={2} align={'center'} mb={2}>
                         <Tag borderRadius={"full"}>{id}</Tag>
                         <Heading fontSize={'2xl'} fontWeight={500} fontFamily={'body'}>
                             {name}
                         </Heading>
-                        <Text color={'gray.500'}>Email: {email}</Text>
+                        <Text color={'gray.500'}>{email}</Text>
                         <Text color={'gray.500'}>Age: {age} | {gender}</Text>
                     </Stack>
                 </Box>
+                <Stack direction={'row'} justify={'center'} spacing={6} p={2}>
+                        <Stack>
+                            <UpdateCustomerDrawer
+                                initialValues={{ name, email, age }}
+                                customerId={id}
+                                fetchCustomers={fetchCustomers}
+                            />
+                        </Stack>
+
+                        <Stack>
+                            <Button
+                                    color='white'
+                                    bg={'red.400'} rounded={'full'}
+                                    _hover={{
+                                        transform: 'translateY(-2px)',
+                                        boxShadow: 'lg',
+                                    }}
+                                    _focus={{
+                                        bg: 'grey.500',
+                                    }}
+                                    onClick={onOpen}
+
+                            >
+                                Delete
+                            </Button>
+
+                            <AlertDialog
+                                isOpen={isOpen}
+                                leastDestructiveRef={cancelRef}
+                                onClose={onClose}
+                            >
+                                <AlertDialogOverlay>
+                                    <AlertDialogContent>
+                                        <AlertDialogHeader fontSize='lg' fontWeight='bold'>
+                                            Delete Customer
+                                        </AlertDialogHeader>
+
+                                        <AlertDialogBody>
+                                            Are you sure you want to delete {name} ?
+                                        </AlertDialogBody>
+
+                                        <AlertDialogFooter>
+                                            <Button ref={cancelRef} onClick={onClose}>
+                                                Cancel
+                                            </Button>
+                                            <Button colorScheme='red' onClick={()=>{
+                                                deleteCustomer(id).then(res => {
+                                                    console.log(res);
+                                                    successNotification(
+                                                        'Customer deleted',
+                                                        `${name} was successfully deleted`
+                                                    )
+                                                    fetchCustomers();
+                                                }).catch(err=>{
+                                                    console.log(err);
+                                                    errorNotification(
+                                                        err.code,
+                                                        err.response.data.message
+                                                    )
+
+                                                }).finally(()=> {
+                                                    onClose()
+                                                })
+                                            }} ml={3}>
+                                                Delete
+                                            </Button>
+                                        </AlertDialogFooter>
+                                    </AlertDialogContent>
+                                </AlertDialogOverlay>
+                            </AlertDialog>
+                        </Stack>
+                    </Stack>
+
             </Box>
         </Center>
     )

@@ -1,24 +1,34 @@
-import React from 'react';
+
 import {Wrap,WrapItem,Spinner,Text} from '@chakra-ui/react';
 import SidebarWithHeader from "./components/shared/SideBar.jsx";
 import {useEffect,useState} from "react";
 import {getCustomers} from "./services/client.js";
 import CardWithImage from "./components/Card.jsx";
+import DrawerForm from "./components/CreateCustomerDrawer.jsx";
+import {errorNotification} from "./services/notification.js";
 
 const App = () => {
 
     const [customers, setCustomers] = useState([]);
    const[loading,setLoading] = useState(false);
+   const [err,setError] = useState("");
+
+   const fetchCustomers = async () => {
+       setLoading(true);
+       getCustomers().then(res => {
+           setCustomers(res.data);
+       }).catch(err => {
+           setError(err.response.data.message)
+           errorNotification(
+               err.code
+           )
+       }).finally(() => {
+           setLoading(false)
+       })
+   }
 
     useEffect(() => {
-        setLoading(true);
-        getCustomers().then(res => {
-            setCustomers(res.data);
-        }).catch(err => {
-        console.log(err)
-    }).finally(() => {
-            setLoading(false)
-        })
+            fetchCustomers();
         }, [])
 
 
@@ -35,22 +45,31 @@ const App = () => {
             </SidebarWithHeader>
         )
     }
-
-    if(customers.length <= 0){
+    if(err){
         return (
             <SidebarWithHeader>
-               <Text> No customers available </Text>
+                <DrawerForm
+                    fetchCustomers={fetchCustomers}
+                />
+                <Text mt={5}> Oooops there was an error </Text>
             </SidebarWithHeader>
         )
+
     }
+
     return (
         <SidebarWithHeader>
+            <DrawerForm
+                fetchCustomers={fetchCustomers}
+            />
             <Wrap justify={"center"} spacing={"30px"}>
             {customers.map((customer,index) => (
                 <WrapItem key={index}>
                 <CardWithImage
                     {...customer}
-                    imageNumber={index}/>
+                    imageNumber={index}
+                    fetchCustomers={fetchCustomers}
+                />
                 </WrapItem>
             ))}
             </Wrap>

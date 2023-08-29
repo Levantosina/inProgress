@@ -29,6 +29,18 @@ services:
       - db
     restart: unless-stopped
 
+  levantos-react:
+    container_name: levantos-react
+    image: levantosina/levantos-react
+    build:
+      context: frontend/react
+      args:
+        api_base_url: http://localhost:8088
+    ports:
+      - "3000:5173"
+    depends_on:
+      - levantos-api
+    restart: unless-stopped
 networks:
   db:
     driver: bridge

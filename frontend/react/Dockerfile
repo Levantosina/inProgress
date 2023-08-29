@@ -1,4 +1,3 @@
-
 ARG api_base_url
 FROM node:19-alpine
 WORKDIR /app

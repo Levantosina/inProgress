@@ -10,7 +10,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 public class TestContainersTest extends AbstractTestContainers {
-
     @Test
     void canStartPostgresDB() {
         assertThat(postgreSQLContainer.isRunning()).isTrue();

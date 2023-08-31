@@ -67,7 +67,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
 
 const NavItem = ({ icon, children, ...rest }) => { //left bar menu
     return (
-        // <Box                                                             //commented to turned out a left bar menu
+        // <Box
         //     as="a"
         //     href="#"
         //     style={{ textDecoration: 'none' }}

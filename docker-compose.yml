@@ -35,8 +35,8 @@ services:
       context: frontend/react
       args:
         api_base_url: http://localhost:8088
-    ports:
-      - "3000:5173"
+        ports:
+          - "3000:5173"
     depends_on:
       - levantos-api
     restart: unless-stopped

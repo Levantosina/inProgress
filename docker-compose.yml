@@ -28,9 +28,9 @@ services:
       - db
     restart: unless-stopped
 
-  levantos-react:
-    container_name: levantos-react
-    image: levantosina/levantos-react
+  levantosina-react:
+    container_name: levantosina-react
+    image: levantosina/levantosina-react
     build:
       context: frontend/react
       args:

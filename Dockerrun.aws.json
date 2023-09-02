@@ -15,7 +15,7 @@
     },
     {
       "name": "levantos-api",
-      "image": "levantosina/levantos-api:31.08.2023.13.40.35",
+      "image": "levantosina/levantos-api:02.09.2023.15.05.21",
       "essential": true,
       "memory": 512,
       "portMappings": [

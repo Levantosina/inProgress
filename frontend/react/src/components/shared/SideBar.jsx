@@ -80,7 +80,7 @@ const NavItem = ({ icon, children, ...rest }) => { //left bar menu
                 role="group"
                 cursor="pointer"
                 _hover={{
-                    bg: 'teal.400',
+                    bg: 'blue.400',
                     color: 'white',
                 }}
                 {...rest}>

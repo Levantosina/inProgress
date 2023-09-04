@@ -5,7 +5,7 @@ services:
     environment:
       - POSTGRES_USER=levantos
       - POSTGRES_PASSWORD=password
-      - PGDATA=postgres
+      - POSTGRES_DB=customer
     volumes:
       - db:/data/postgres
     ports:
@@ -28,9 +28,9 @@ services:
       - db
     restart: unless-stopped
 
-  levantosina-react:
-    container_name: levantosina-react
-    image: levantosina/levantosina-react
+  levantos-react:
+    container_name: levantos-react
+    image: levantosina/levantos-react
     build:
       context: frontend/react
       args:

@@ -29,7 +29,7 @@ Visit the official Docker website to download the Docker Desktop application
 ### Run the app
 ### Go to "../frontend/react" 
     npm run dev
-    will run host - 
+    will run hosts 
 http://localhost:5173/  
 and  
 http://localhost:3000/

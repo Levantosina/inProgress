@@ -36,8 +36,7 @@ http://localhost:3000/
 
 
 ### Example of the app
-image
-
+[image](https://drive.google.com/file/d/1W2fpjDFkVc22vkvFjYA7D_saYh5d4erk/view?usp=sharing)
 
 
 

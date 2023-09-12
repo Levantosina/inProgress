@@ -19,6 +19,7 @@
 		<docker.username>levantosina</docker.username>
 		<docker.image.name>levantos-api</docker.image.name>
 		<docker.image.tag/>
+		<jsonWebToken.version>0.11.1</jsonWebToken.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -84,6 +85,36 @@
 			<artifactId>postgresql</artifactId>
 			<version>1.18.3</version>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-api</artifactId>
+			<version>${jsonWebToken.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+			<version>${jsonWebToken.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId> <!-- or jjwt-gson if Gson is preferred -->
+			<version>${jsonWebToken.version}</version>
+			<scope>runtime</scope>
 		</dependency>
 
 	</dependencies>

@@ -32,9 +32,13 @@ Visit the official Docker website to download the Docker Desktop application
     will run host - 
 http://localhost:5173/  
 and  
-http://localhost:3000/ 
+http://localhost:3000/
 
-![alt text](https://drive.google.com/file/d/1W2fpjDFkVc22vkvFjYA7D_saYh5d4erk/view?usp=sharing)
+
+### Example of the app
+<img alt="alt text" height="300" src="C:\Users\levan\Desktop\CustomerShot.png" width="450"/>
+
+
 
 
 

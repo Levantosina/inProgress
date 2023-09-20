@@ -1,5 +1,6 @@
 package com.app.jwt;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -41,7 +42,33 @@ public class JWTUtil {
                 .compact();
        return token;
     }
+
+    public String getSubject(String token){
+        return getClaims(token).getSubject();
+    }
+
+    public Claims getClaims(String token){
+     Claims claims =   Jwts
+                .parserBuilder()
+                .setSigningKey(getSingingKey())
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+
+     return  claims;
+    }
+
     private Key getSingingKey() {
         return Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
+    }
+
+    public boolean isTokeValid(String jwt, String username) {
+       String subject=getSubject(jwt);
+        return subject.equals(username) && !isTokenExpired(jwt);
+    }
+
+    private boolean isTokenExpired(String jwt) {
+        Date today= Date.from(Instant.now());
+        return getClaims(jwt).getExpiration().before(today);
     }
 }

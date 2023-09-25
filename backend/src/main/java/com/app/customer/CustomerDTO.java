@@ -6,15 +6,15 @@ import java.util.List;
  * @author Levantosina
  */
 public record CustomerDTO (
-                           Long id,
-                           String name,
-                           String email,
-                           Gender gender,
+        Long id,
+        String name,
+        String email,
+        Gender gender,
 
-                           Integer age,
-                            List<String>roles,
-                            String username
-                          ) {
+        Integer age,
+        List<String>roles,
+        String username
+) {
 
 
 }

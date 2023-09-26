@@ -107,10 +107,13 @@ public class AuthIntegrationTest {
        String token= result.getResponseHeaders().get(AUTHORIZATION).get(0);
 
        AuthenticationResponse authenticationResponse=result.getResponseBody();
+       CustomerDTO customerDTO = authenticationResponse.customerDTO();
+
        assertThat(jwtUtil.isTokeValid(
                token,
-               authenticationResponse.customerDTO().username()));
-    CustomerDTO customerDTO=authenticationResponse.customerDTO();
+              customerDTO.username())).isTrue();
+
+
 
        assertThat(customerDTO.email()).isEqualTo(email);
        assertThat(customerDTO.age()).isEqualTo(age);

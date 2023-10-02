@@ -1,8 +1,8 @@
 
 import * as Yup from 'yup';
 import {Alert, AlertIcon, Box, Button, FormLabel, Input, Stack} from "@chakra-ui/react";
-import { updateCustomer} from "../services/client.js";
-import {errorNotification, successNotification} from "../services/notification.js";
+import { updateCustomer} from "../../services/client.js";
+import {errorNotification, successNotification} from "../../services/notification.js";
 import {Form, Formik, useField} from "formik";
 
 // eslint-disable-next-line react/prop-types

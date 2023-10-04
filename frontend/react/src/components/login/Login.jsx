@@ -2,10 +2,8 @@
 
 import {
     Button,
-    Checkbox,
     Flex,
     Text,
-    FormControl,
     FormLabel,
     Heading,
     Input,
@@ -14,6 +12,9 @@ import {
 } from '@chakra-ui/react'
 import {Formik, Form, useField} from "formik";
 import * as Yup from "yup";
+import {useAuth} from "../context/AuthContext.jsx";
+import {errorNotification} from "../../services/notification.js";
+import {useNavigate} from "react-router-dom";
 
 
 
@@ -37,6 +38,8 @@ const MyTextInput = ({ label, ...props }) => {
 };
 
 const LoginForm = () => {
+    const { login } = useAuth();
+    const navigate=useNavigate();
     return(
         <Formik
             validateOnMount={true}
@@ -47,7 +50,18 @@ const LoginForm = () => {
                     password: Yup.string().max(20,"Password cannot more than 20 characters").required('Password is required')
             })}
             onSubmit={(values,{setSubmitting})=>{
-                alert(JSON.stringify(values,null,0))
+               setSubmitting(true);
+                login(values).then( res => {
+                    navigate("/dashboard");
+                console.log("Successfully logged in");
+               }).catch(err=>{
+                   errorNotification(
+                       err.code,
+                       err.response.data.message
+                   )
+               }).finally(()=>{
+                     setSubmitting(false);
+               })
             }}>
 
             {({isValid,isSubmitting})=>(
@@ -79,6 +93,7 @@ const LoginForm = () => {
 }
 
 const Login = () => {
+
     return (
         <Stack minH={'100vh'} direction={{ base: 'column', md: 'row' }}>
             <Flex p={8} flex={1} alignItems={'center'} justifyContent={'center'} >

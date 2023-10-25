@@ -115,6 +115,10 @@ const Login = () => {
                   />
                     <Heading fontSize={'2xl'}>Sign in to your account</Heading>
                    <LoginForm/>
+
+                    <Link color={"blue.500"}href={"/signup"}>
+                        Do not have an account? Sign up now.
+                    </Link>
                 </Stack>
             </Flex>
             <Flex flex={1} p={10} flexDirection={"column"} alignItems={"center"} justifyContent={"center"} bgGradient={{sm:'linear(to-r, #010102, #010103)'}}>

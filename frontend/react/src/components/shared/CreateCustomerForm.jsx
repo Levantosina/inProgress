@@ -42,7 +42,7 @@ const MySelect = ({ label, ...props }) => {
 };
 
 // And now we can use these
-const CreateCustomerForm = ({fetchCustomers}) => {
+const CreateCustomerForm = ({onSuccess}) => {
     return (
         <>
 
@@ -85,7 +85,7 @@ const CreateCustomerForm = ({fetchCustomers}) => {
                                 "Customer created",
                               `${customer.name} has been created successfully`
                           );
-                            fetchCustomers();
+                           onSuccess(res.headers["authorization"]);
                        }).catch(err => {
                             console.log(err);
                             errorNotification(

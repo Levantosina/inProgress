@@ -35,8 +35,7 @@ and
 http://localhost:3000/
 
 
-### Example of the app
-<img alt="alt text" height="300" src="C:\Users\levan\Desktop\CustomerShot.png" width="450"/>
+
 
 
 

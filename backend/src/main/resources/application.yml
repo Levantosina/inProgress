@@ -7,6 +7,15 @@ cors:
     allowed-methods: "*"
     allowed-headers: "*"
     exposed-headers: "*"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info"
+
+
+
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5332/customer

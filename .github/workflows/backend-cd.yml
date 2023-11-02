@@ -69,18 +69,18 @@ jobs:
           curl -X POST -H 'Content-type: application/json' 
           --data '{"text":":docker: Image tag:${{steps.build-number.outputs.BUILD_NUMBER}} pushed to docker"}' 
           ${{ secrets.SLACK_WEBHOOK_URL }}
-      - name: Update Dockerrun.aws.json api image with new build number
-        run: |
-          echo "Dockerrun.aws.json before updating tag"
-          cat ../Dockerrun.aws.json
-          sed -i -E 's_(levantosina/levantos-api:)([^"]*)_\1'${{steps.build-number.outputs.BUILD_NUMBER}}'_' ../Dockerrun.aws.json
-          echo "Dockerrun.aws.json after updating tag"
-          cat ../Dockerrun.aws.json
-      - name: Send Slack Message
-        run: >
-          curl -X POST -H 'Content-type: application/json'
-         --data '{"text":":aws: Starting deployment to Elastic Beanstalk :rocket:"}'
-          ${{ secrets.SLACK_WEBHOOK_URL }}
+      #      - name: Update Dockerrun.aws.json api image with new build number
+      #        run: |
+      #          echo "Dockerrun.aws.json before updating tag"
+      #          cat ../Dockerrun.aws.json
+      #          sed -i -E 's_(levantosina/levantos-api:)([^"]*)_\1'${{steps.build-number.outputs.BUILD_NUMBER}}'_' ../Dockerrun.aws.json
+      #          echo "Dockerrun.aws.json after updating tag"
+      #          cat ../Dockerrun.aws.json
+      #      - name: Send Slack Message
+      #        run: >
+      #          curl -X POST -H 'Content-type: application/json'
+      #          --data '{"text":":aws: Starting deployment to Elastic Beanstalk :rocket:"}'
+      #          ${{ secrets.SLACK_WEBHOOK_URL }}
 #      - name: Deploy to Elastic Beanstalk
 #        uses: einaregilsson/beanstalk-deploy@v21
 #        with:

@@ -1,4 +1,4 @@
-# Customer service project(under development)
+# Customer service project
 
 ## Description
 
